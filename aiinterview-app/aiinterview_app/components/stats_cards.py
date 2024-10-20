@@ -5,7 +5,6 @@ from reflex.components.radix.themes.base import (
 
 from ..backend.backend import State
 
-
 def _arrow_badge(arrow_icon: str, percentage_change: float, arrow_color: str):
     return rx.badge(
         rx.icon(
@@ -109,13 +108,14 @@ def stats_cards_group() -> rx.Component:
                     # width="100%"
                 ),              
                 rx.text_area(
+                    id = "job_description",
                     placeholder="Paste the job description here",
                     color_scheme ="teal",
                     resize="vertical",
                     line="50",
                     width="100%",
                     height="80%",
-                    # on_blur=TextAreaBlur.set_text,
+                    on_blur=State.set_job_description,
                 ),
                 rx.hstack(
                     rx.icon(
@@ -129,7 +129,9 @@ def stats_cards_group() -> rx.Component:
                         color=rx.color("gray", 11),      
                     ),
                     rx.input(
+                        id = "company",
                         placeholder="Optional ...",
+                        on_blur=State.set_company,
                     ),
                     spacing="3",
                     width="100%",
@@ -162,12 +164,13 @@ def stats_cards_group() -> rx.Component:
                     # align="center",
                 ),
                 rx.text_area(
-                    placeholder="Paste the your resume here",
+                    id = "resume",
+                    placeholder="Paste your resume here",
                     color_scheme = "teal",
                     resize="vertical",
                     size="10",
-                    width="100%"
-                    # on_blur=TextAreaBlur.set_text,
+                    width="100%",
+                    on_blur=State.set_resume,
                 ),
             ),
             size="20",

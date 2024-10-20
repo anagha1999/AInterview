@@ -2,18 +2,24 @@ import reflex as rx
 from .components.stats_cards import stats_cards_group
 from .components.videocam import webcam_upload_component
 from .views.navbar import navbar
-from .views.table import main_table
+from .backend.backend import State
 
 def index() -> rx.Component:
     return rx.vstack(
         navbar(),
         stats_cards_group(),
         rx.center(
+            # rx.button(
+            #     rx.text("  Save  ", size="4", display=["none", "none", "block"]),
+            #     size="3",
+            #     on_click=State.update__info()
+            # ),
             rx.button(
-                rx.text("Confirm", size="4", display=["none", "none", "block"]),
+                rx.text("Start Interview", size="4", display=["none", "none", "block"]),
                 size="3",
                 on_click=rx.redirect("/interview")
             ),
+            spacing="6",
             width="100%",
         ),
         width="100%",
