@@ -1,9 +1,30 @@
 import reflex as rx
+
 from reflex.components.radix.themes.base import (
     LiteralAccentColor,
 )
 
-from ..backend.backend import State
+# from ..backend.backend import State
+class InputState(rx.State):
+    job_description: str
+    resume: str
+    company: str
+    name: str
+
+    def set_input(self, job_description: str, resume: str, company: str, name: str ):
+        self.job_description = job_description
+        self.resume = resume
+        self.company = company
+        self.name = name
+
+    def handle_submit(self):
+        # Process the submitted data
+        #self.set_input(form_data[job_description])
+        #print(f"Submitted value: {form_data}")
+        return rx.redirect("/interview")
+        
+
+        
 
 def _arrow_badge(arrow_icon: str, percentage_change: float, arrow_color: str):
     return rx.badge(
@@ -93,6 +114,26 @@ def stats_cards_group() -> rx.Component:
             rx.vstack( 
                 rx.hstack(
                     rx.icon(
+                        tag="building-2",
+                        size=22,
+                        color=rx.color("blue", 11),
+                    ),
+                    rx.text(
+                        "Company",
+                        size="3",
+                        color=rx.color("gray", 11),      
+                    ),
+                    rx.input(
+                        id = "company",
+                        placeholder="Optional ...",
+                        on_blur=InputState.set_company,
+                        #value=InputState.company
+                    ),
+                    spacing="3",
+                    width="100%",
+                ),
+                rx.hstack(
+                    rx.icon(
                         tag="briefcase",
                         size=22,
                         color=rx.color("blue", 11),
@@ -115,27 +156,10 @@ def stats_cards_group() -> rx.Component:
                     line="50",
                     width="100%",
                     height="80%",
-                    on_blur=State.set_job_description,
+                    on_blur=InputState.set_job_description,
+                    #value=InputState.job_description
                 ),
-                rx.hstack(
-                    rx.icon(
-                        tag="building-2",
-                        size=22,
-                        color=rx.color("blue", 11),
-                    ),
-                    rx.text(
-                        "Company",
-                        size="3",
-                        color=rx.color("gray", 11),      
-                    ),
-                    rx.input(
-                        id = "company",
-                        placeholder="Optional ...",
-                        on_blur=State.set_company,
-                    ),
-                    spacing="3",
-                    width="100%",
-                ),
+                
                 size="10",
                 width="100%",
             ),
@@ -147,6 +171,26 @@ def stats_cards_group() -> rx.Component:
         ),
         rx.card(
             rx.vstack(
+                rx.hstack(
+                    rx.icon(
+                        tag="building-2",
+                        size=22,
+                        color=rx.color("blue", 11),
+                    ),
+                    rx.text(
+                        "Name",
+                        size="3",
+                        color=rx.color("gray", 11),      
+                    ),
+                    rx.input(
+                        id = "name",
+                        placeholder="Jane Doe",
+                        on_blur=InputState.set_name,
+                        #value=InputState.name
+                    ),
+                    spacing="3",
+                    width="100%",
+                ),
                 rx.hstack(
                     rx.icon(
                         tag="book-user",
@@ -170,13 +214,20 @@ def stats_cards_group() -> rx.Component:
                     resize="vertical",
                     size="10",
                     width="100%",
-                    on_blur=State.set_resume,
+                    on_blur=InputState.set_resume,
+                    #value=InputState.resume
                 ),
             ),
             size="20",
             width="100%",
             max_width="40rem",
-        ),        
+        ),  
+        rx.center(
+            rx.button(
+                rx.text("Start Interview",type= "submit", size="4", display=["none", "none", "block"]),
+                size="3",
+                on_click=InputState.handle_submit,
+            )),      
         spacing="6",
         width="100%",
         justify="center",

@@ -1,5 +1,5 @@
 import reflex as rx
-from ..backend.backend import State
+from ..backend.backend import OutputState
 
 def create_heading(
     font_size, font_weight, margin_bottom, text
@@ -105,7 +105,7 @@ def create_detailed_report():
     return rx.box(
         rx.text(
             create_strong_text(text="Summary:"),
-            State.summary,
+            OutputState.summary,
             font_size="0.875rem",
             line_height="1.25rem",
         ),
@@ -124,7 +124,7 @@ def create_detailed_report():
         # create_small_strong_text(text="Recommendations:"),
         rx.text(
             create_strong_text(text="Recommendations:"),
-            State.recommendation,
+            OutputState.recommendation,
             margin_top="1rem",
             font_size="0.875rem",
             line_height="1.25rem",
@@ -147,7 +147,7 @@ def create_detailed_report():
         # ),
         rx.text(
             create_strong_text(text="Next Steps:"),
-            State.next_step,
+            OutputState.next_step,
             margin_top="1rem",
             font_size="0.875rem",
             line_height="1.25rem",
@@ -164,27 +164,27 @@ def create_interview_scores_layout():
         rx.box(
             create_score_section(
                 title="Structure",
-                progress_width= f"{(State.structure.value / 10) * 100:.0f}%",
-                score_text=f"{State.structure.value}/10",
-                color = State.structure.box_color,
+                progress_width= f"{(OutputState.structure.value / 10) * 100:.0f}%",
+                score_text=f"{OutputState.structure.value}/10",
+                color = OutputState.structure.box_color,
             ),
             create_score_section(
                 title="Relevance of Answers",
-                progress_width= f"{(State.relevance.value / 10) * 100:.0f}%",
-                score_text=f"{State.relevance.value}/10",
-                color = State.relevance.box_color,
+                progress_width= f"{(OutputState.relevance.value / 10) * 100:.0f}%",
+                score_text=f"{OutputState.relevance.value}/10",
+                color = OutputState.relevance.box_color,
             ),
             create_score_section(
                 title="Volume Levels",
-                progress_width= f"{(State.volume.value / 10) * 100:.0f}%",
-                score_text=f"{State.volume.value}/10",
-                color = State.volume.box_color,
+                progress_width= f"{(OutputState.volume.value / 10) * 100:.0f}%",
+                score_text=f"{OutputState.volume.value}/10",
+                color = OutputState.volume.box_color,
             ),
             create_score_section(
                 title="Speech Clarity",
-                progress_width= f"{(State.clarity.value / 10) * 100:.0f}%",
-                score_text=f"{State.clarity.value}/10",
-                color = State.clarity.box_color,
+                progress_width= f"{(OutputState.clarity.value / 10) * 100:.0f}%",
+                score_text=f"{OutputState.clarity.value}/10",
+                color = OutputState.clarity.box_color,
             ),
             display="flex",
             flex_direction="column",
@@ -246,6 +246,6 @@ def create_interview_scores_page():
         rx.button(
             "test",
             size="3",
-            on_click=State.increament(),
+            on_click=OutputState.increament(),
         )
     )

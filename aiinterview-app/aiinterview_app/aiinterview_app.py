@@ -3,21 +3,21 @@ from .components.stats_cards import stats_cards_group
 from .components.videocam import webcam_upload_component
 from .components.report import create_interview_scores_card
 from .views.navbar import navbar
-from .backend.backend import State
+from .backend.backend import OutputState
 
 def index() -> rx.Component:
     return rx.vstack(
         navbar(),
         stats_cards_group(),
-        rx.center(
-            rx.button(
-                rx.text("Start Interview", size="4", display=["none", "none", "block"]),
-                size="3",
-                on_click=rx.redirect("/interview")
-            ),
-            spacing="6",
-            width="100%",
-        ),
+        # rx.center(
+        #     rx.button(
+        #         rx.text("Start Interview", size="4", display=["none", "none", "block"]),
+        #         size="3",
+        #         on_click=rx.redirect("/interview")
+        #     ),
+        #     spacing="6",
+        #     width="100%",
+        # ),
         width="100%",
         spacing="6",
         justify = "center",
@@ -105,7 +105,7 @@ def report() ->rx.Component:
         rx.button(
             "test",
             size="3",
-            on_click=State.test_increament(),
+            on_click=OutputState.test_increament(),
         ),
     )
 

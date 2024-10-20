@@ -8,6 +8,7 @@ from datetime import datetime, timedelta
 #     job_description: str
 #     resume: str
 #     company: str
+#     name: str
 
 class Score(rx.Base):
     value = 1
@@ -25,12 +26,7 @@ class Score(rx.Base):
         else:
             self.box_color = "green"
     
-class State(rx.State):
-    """The app state."""
-    job_description: str
-    resume: str
-    company: str
-    
+class OutputState(rx.State):
     structure: Score = Score()
     relevance: Score = Score()
     volume: Score = Score()
@@ -40,10 +36,11 @@ class State(rx.State):
     next_step = " Schedule a follow-up session to address the identified areas for improvement. If significant progress is made, proceed with the next round of interviews.",
                    
 
-    def update__info(self, new_jd: str, new_resume: str, new_company: str):
+    def update__info(self, new_jd: str, new_resume: str, new_company: str, new_name: str):
         self.job_description = new_jd
         self.resume = new_resume
         self.company = new_company
+        self.name = new_name
     
     def update_score(self, structure :str, relevance :str, volume: str, clarity: str):
         self.structure.set_value(structure)

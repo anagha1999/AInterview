@@ -5,7 +5,7 @@ from urllib.request import urlopen
 from PIL import Image
 import reflex_webcam as webcam
 from vapi_python import Vapi
-from ..backend.backend import State
+from .stats_cards import InputState
 
 # Your VAPI assistant credentials
 API_KEY = "ef315768-0514-4089-8c7e-17e831657af6" #siva: "2b69f505-2aac-410c-bd38-6b8da2baddf8"
@@ -13,11 +13,15 @@ ASSISTANT_ID = "cc4108b8-369e-4ece-8b69-58d09958da28" # siva: "4d742d2d-2afe-484
 
 vapi = Vapi(api_key=API_KEY)
 
+name = "Jane" #InputState.name
+company ="Google" #InputState.company
 
-company = "Amazon" #accept from user input. 
-amazonAssistantOverrides = { 
+print(name)
+#print(InputState.name.__str__)
+#company = "Amazon" #accept from user input. 
+assistantOverrides = { 
   "variableValues": {
-    'name': "Alice",
+    'name': name,
     'company': company}
 }
 
@@ -70,7 +74,7 @@ class CameraState(rx.State):
     def on_start_recording(self):
         self.recording = True
         print("Started recording")
-        vapi.start(assistant_id=ASSISTANT_ID, assistant_overrides=amazonAssistantOverrides)
+        vapi.start(assistant_id=ASSISTANT_ID, assistant_overrides=assistantOverrides)
         with self._video_path().open("wb") as f:
             f.write(b"")
 
