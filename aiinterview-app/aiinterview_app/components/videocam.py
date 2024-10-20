@@ -4,6 +4,13 @@ from pathlib import Path
 from urllib.request import urlopen
 from PIL import Image
 import reflex_webcam as webcam
+from vapi_python import Vapi
+
+
+# Your VAPI assistant credentials
+API_KEY = "ef315768-0514-4089-8c7e-17e831657af6"
+ASSISTANT_ID = "cc4108b8-369e-4ece-8b69-58d09958da28"
+vapi = Vapi(api_key=API_KEY)
 
 # Identifies a particular webcam component in the DOM
 WEBCAM_REF = "webcam"
@@ -53,6 +60,7 @@ class CameraState(rx.State):
     def on_start_recording(self):
         self.recording = True
         print("Started recording")
+        vapi.start(assistant_id=ASSISTANT_ID)
         with self._video_path().open("wb") as f:
             f.write(b"")
 
@@ -71,8 +79,11 @@ class CameraState(rx.State):
                 f.write(vid.read())
 
     def on_stop_recording(self):
+        vapi.stop()
         print(f"Stopped recording: {self._video_path()}")
         self.recording = False
+
+    # vapi.setMuted(true);
 
     def start_recording(self, ref: str):
         """Start recording a video."""
