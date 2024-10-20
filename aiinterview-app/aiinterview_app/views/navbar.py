@@ -1,6 +1,5 @@
 import reflex as rx
 
-
 def navbar():
     return rx.flex(
         rx.badge(

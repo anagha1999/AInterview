@@ -8,24 +8,35 @@ def index() -> rx.Component:
     return rx.vstack(
         navbar(),
         stats_cards_group(),
-        rx.box(
-            main_table(),
+        rx.center(
+            rx.button(
+                rx.text("Confirm", size="4", display=["none", "none", "block"]),
+                size="3",
+                on_click=rx.redirect("/interview")
+            ),
             width="100%",
         ),
         width="100%",
         spacing="6",
+        justify = "center",
         padding_x=["1.5em", "1.5em", "3em"],
     )
 
+def interview():
+    return rx.text("TODO: access UserMedia, stream video")
 
 app = rx.App(
     theme=rx.theme(
-        appearance="dark", has_background=True, radius="large", accent_color="grass"
+        appearance="light", has_background=True, radius="large", accent_color="grass"
     ),
 )
 
 app.add_page(
     index,
-    title="Customer Data App",
-    description="A simple app to manage customer data.",
+    title="AI Interview Coach ",
+    description="A simple app to help you prepare for your interview!",
+)
+
+app.add_page(
+    interview,
 )

@@ -90,33 +90,74 @@ def stats_card(
 
 def stats_cards_group() -> rx.Component:
     return rx.flex(
-        stats_card(
-            "Total Customers",
-            State.current_month_values.num_customers,
-            State.previous_month_values.num_customers,
-            State.customers_change,
-            "users",
-            "blue",
+        rx.card(
+            rx.vstack( 
+                rx.hstack(
+                    rx.icon(
+                        tag="briefcase",
+                        size=22,
+                        color=rx.color("blue", 11),
+                    ),
+                    rx.text(
+                        "Job Description",
+                        size="4",
+                        weight="medium",
+                        color=rx.color("gray", 11),      
+                    ),
+                    spacing="2",
+                    # align="center",
+                    # width="100%"
+                ),              
+                rx.text_area(
+                    placeholder="Paste the job description here",
+                    color_scheme ="teal",
+                    resize="vertical",
+                    size="10",
+                    width="100%"
+                    # on_blur=TextAreaBlur.set_text,
+                ),
+                size="10",
+                width="100%",
+            ),
+            # size="20",
+            width="100%",
+            # max_height = "100rem",
+            max_width = "40rem",
         ),
-        stats_card(
-            "Total Payments",
-            State.current_month_values.total_payments,
-            State.previous_month_values.total_payments,
-            State.payments_change,
-            "dollar-sign",
-            "orange",
-            "$",
-        ),
-        stats_card(
-            "Total Delivers",
-            State.current_month_values.num_delivers,
-            State.previous_month_values.num_delivers,
-            State.delivers_change,
-            "truck",
-            "ruby",
-        ),
-        spacing="5",
+        rx.card(
+            rx.vstack(
+                rx.hstack(
+                    rx.icon(
+                        tag="book-user",
+                        size=22,
+                        color=rx.color("blue", 11),
+                    ),
+                    rx.text(
+                        "Resume",
+                        size="4",
+                        weight="medium",
+                        color=rx.color("gray", 11),     
+
+                    ),
+                    spacing="2",
+                    # align="center",
+                ),
+                rx.text_area(
+                    placeholder="Paste the your resume here",
+                    color_scheme = "teal",
+                    resize="vertical",
+                    size="10",
+                    width="100%"
+                    # on_blur=TextAreaBlur.set_text,
+                ),
+            ),
+            size="20",
+            width="100%",
+            max_width="40rem",
+        ),        
+        spacing="6",
         width="100%",
+        justify="center",
         wrap="wrap",
-        display=["none", "none", "flex"],
+        # display=["none", "none", "flex"],
     )
