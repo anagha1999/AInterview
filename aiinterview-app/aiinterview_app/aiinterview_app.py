@@ -5,6 +5,75 @@ from .components.report import create_interview_scores_card
 from .views.navbar import navbar
 from .backend.backend import State
 
+
+def create_content_section():
+    return rx.flex(
+            rx.vstack(
+                rx.badge(
+                    rx.icon(tag="message-circle-question", size=28),
+                    rx.heading("Interview Room", size="6"),
+                    color_scheme="green",
+                    radius="large",
+                    align="center",
+                    variant="surface",
+                    padding="0.65rem",
+                ),
+                rx.flex(
+                    rx.card(
+                        rx.center(
+                        webcam_upload_component("webcam"),
+                        width="100%",
+                        height="100%",
+                        ),
+                    ),
+                    rx.box(
+                        rx.vstack(
+                            rx.card(
+                                rx.image(
+                                alt="interviewer",
+                                src="https://reflex-hosting-dev-flexgen.s3.us-west-2.amazonaws.com/replicate/38gX1mFs9ZpQNhfoAex3yaUgyzvyfqyPIgFndLtgPevsdPiOB/out-0.webp",
+                                height="auto",
+                                width="100%",
+                                ),
+                                background_color="#ffffff",
+                                overflow="hidden",
+                                border_radius="0.5rem",
+                                box_shadow="0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+                            ),
+                            spacing="6",
+                        ),
+                        width="25%",
+                    ),
+                    rx.box(
+                        rx.button(
+                            "Finish",
+                            color_scheme="red",
+                            size="4",
+                            width="300px",
+                            on_click=rx.redirect("/report"),
+                            ),
+                        position="absolute",
+                        bottom="2rem",
+                        right="5rem",
+                    ),
+                    spacing = "5",
+                    display="flex",
+                    height="90vh",
+                    padding_bottom="2em",
+                ),
+            ),
+            id="contentSection",
+            # display="none",
+            padding="2em",
+            spacing = "5",
+            display="flex",
+            max_width="100rem",
+            height="100vh",
+            width="100%",
+            justify="center",
+            wrap="wrap",
+            )
+    
 def index() -> rx.Component:
     return rx.vstack(
         navbar(),
@@ -12,11 +81,25 @@ def index() -> rx.Component:
         rx.center(
             rx.button(
                 rx.text("Start Interview", size="4", display=["none", "none", "block"]),
+                id="startButton",
                 size="3",
-                on_click=rx.redirect("/interview")
+                # on_click=rx.redirect("/interview")
             ),
             spacing="6",
             width="100%",
+        ),
+        rx.box(
+            create_content_section(),
+            rx.script(
+                """
+                document.getElementById('startButton').addEventListener('click', function() {
+                    var contentSection = document.getElementById('contentSection');
+                    contentSection.classList.toggle('hidden');
+                });
+            """
+            ),
+            background_color="#F3F4F6",
+            min_height="100vh",
         ),
         width="100%",
         spacing="6",
