@@ -112,14 +112,33 @@ def stats_cards_group() -> rx.Component:
                     placeholder="Paste the job description here",
                     color_scheme ="teal",
                     resize="vertical",
-                    size="10",
-                    width="100%"
+                    line="50",
+                    width="100%",
+                    height="80%",
                     # on_blur=TextAreaBlur.set_text,
+                ),
+                rx.hstack(
+                    rx.icon(
+                        tag="building-2",
+                        size=22,
+                        color=rx.color("blue", 11),
+                    ),
+                    rx.text(
+                        "Company",
+                        size="3",
+                        color=rx.color("gray", 11),      
+                    ),
+                    rx.input(
+                        placeholder="Optional ...",
+                    ),
+                    spacing="3",
+                    width="100%",
                 ),
                 size="10",
                 width="100%",
             ),
             # size="20",
+             
             width="100%",
             # max_height = "100rem",
             max_width = "40rem",
