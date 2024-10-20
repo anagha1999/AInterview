@@ -83,24 +83,24 @@ def index() -> rx.Component:
                 rx.text("Start Interview", size="4", display=["none", "none", "block"]),
                 id="startButton",
                 size="3",
-                # on_click=rx.redirect("/interview")
+                on_click=rx.redirect("/interview")
             ),
             spacing="6",
             width="100%",
         ),
-        rx.box(
-            create_content_section(),
-            rx.script(
-                """
-                document.getElementById('startButton').addEventListener('click', function() {
-                    var contentSection = document.getElementById('contentSection');
-                    contentSection.classList.toggle('hidden');
-                });
-            """
-            ),
-            background_color="#F3F4F6",
-            min_height="100vh",
-        ),
+        # rx.box(
+        #     create_content_section(),
+        #     rx.script(
+        #         """
+        #         document.getElementById('startButton').addEventListener('click', function() {
+        #             var contentSection = document.getElementById('contentSection');
+        #             contentSection.classList.toggle('hidden');
+        #         });
+        #     """
+        #     ),
+        #     background_color="#F3F4F6",
+        #     min_height="100vh",
+        # ),
         width="100%",
         spacing="6",
         justify = "center",
