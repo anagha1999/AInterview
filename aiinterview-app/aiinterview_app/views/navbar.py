@@ -3,8 +3,8 @@ import reflex as rx
 def navbar():
     return rx.flex(
         rx.badge(
-            rx.icon(tag="table-2", size=28),
-            rx.heading("AInterview", size="6"),
+            # rx.icon(tag="table-2", size=28),
+            rx.heading("Prep.AI", size="6"),
             color_scheme="green",
             radius="large",
             align="center",
@@ -13,7 +13,7 @@ def navbar():
         ),
         rx.spacer(),
         rx.hstack(
-            rx.logo(),
+            # rx.logo(),
             rx.color_mode.button(),
             align="center",
             spacing="3",

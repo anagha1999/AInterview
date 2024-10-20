@@ -91,6 +91,41 @@ def stats_cards_group() -> rx.Component:
     return rx.flex(
         rx.card(
             rx.vstack( 
+                rx.hstack(                    
+                    rx.icon(
+                        tag="building-2",
+                        size=22,
+                        color=rx.color("blue", 11),
+                    ),
+                    rx.text(
+                        "Company",
+                        size="3",
+                        color=rx.color("gray", 11),      
+                    ),
+                    rx.input(
+                        id = "company",
+                        placeholder="Enter the company",
+                        on_blur=State.set_company,
+                    ),
+                    rx.spacer(),
+                    rx.icon(
+                        tag="contact",
+                        size=22,
+                        color=rx.color("blue", 11),
+                    ),
+                    rx.text(
+                        "Job Title",
+                        size="3",
+                        color=rx.color("gray", 11),      
+                    ),
+                    rx.input(
+                        id = "Job Title",
+                        placeholder="Enter the job title",
+                        on_blur=State.set_company,
+                    ),
+                    spacing="3",
+                    width="100%",
+                ),                
                 rx.hstack(
                     rx.icon(
                         tag="briefcase",
@@ -117,25 +152,6 @@ def stats_cards_group() -> rx.Component:
                     height="80%",
                     on_blur=State.set_job_description,
                 ),
-                rx.hstack(
-                    rx.icon(
-                        tag="building-2",
-                        size=22,
-                        color=rx.color("blue", 11),
-                    ),
-                    rx.text(
-                        "Company",
-                        size="3",
-                        color=rx.color("gray", 11),      
-                    ),
-                    rx.input(
-                        id = "company",
-                        placeholder="Optional ...",
-                        on_blur=State.set_company,
-                    ),
-                    spacing="3",
-                    width="100%",
-                ),
                 size="10",
                 width="100%",
             ),
@@ -147,6 +163,25 @@ def stats_cards_group() -> rx.Component:
         ),
         rx.card(
             rx.vstack(
+                rx.hstack(                    
+                    rx.icon(
+                        tag="circle-user",
+                        size=22,
+                        color=rx.color("blue", 11),
+                    ),
+                    rx.text(
+                        "Candidate Name",
+                        size="3",
+                        color=rx.color("gray", 11),      
+                    ),
+                    rx.input(
+                        id = "company",
+                        placeholder="Enter your name",
+                        on_blur=State.set_company,
+                    ),
+                    spacing="3",
+                    width="100%",
+                ),                  
                 rx.hstack(
                     rx.icon(
                         tag="book-user",

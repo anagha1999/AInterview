@@ -176,6 +176,7 @@ def interview() -> rx.Component:
 
 def report() ->rx.Component:
     return rx.fragment(
+        # navbar(),
         rx.script(src="https://cdn.tailwindcss.com"),
         rx.box(
             create_interview_scores_card(),

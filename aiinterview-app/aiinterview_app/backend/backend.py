@@ -35,10 +35,9 @@ class State(rx.State):
     relevance: Score = Score()
     volume: Score = Score()
     clarity: Score = Score()
-    summary = " Schedule a follow-up session to address the identified areas for improvement. If significant progress is made, proceed with the next round of interviews.",
-    recommendation= " Schedule a follow-up session to address the identified areas for improvement. If significant progress is made, proceed with the next round of interviews.",
-    next_step = " Schedule a follow-up session to address the identified areas for improvement. If significant progress is made, proceed with the next round of interviews.",
-                   
+    summary = "You demonstrated strong product management fundamentals, especially in prioritizing features and aligning product goals with business objectives. Your communication about working with cross-functional teams was clear, and you gave solid examples of driving feature development from concept to launch. However, your answers regarding handling unexpected product failures could have been more detailed, and expanding on how you measure product success beyond basic metrics would strengthen your responses."
+    recommendation= "You could enhance your approach by discussing risk management and how you handle post-launch issues in more depth. Providing more detailed examples of how you adapt strategy based on stakeholder feedback would also be beneficial. Additionally, sharing insights into customer feedback loops and iterative development processes would showcase a more user-centered product approach."
+    next_step = "You show great potential, but a follow-up interview focused on your experience with data-driven decision-making and product iterations based on user feedback would provide further insight. It might also be helpful to complete a product scenario exercise to assess your problem-solving and prioritization skills in a more practical setting before moving forward."       
 
     def update__info(self, new_jd: str, new_resume: str, new_company: str):
         self.job_description = new_jd
@@ -57,9 +56,9 @@ class State(rx.State):
         self.next_step = next_step
 
     def test_increament(self):
-        self.structure.set_value("1")
-        self.relevance.set_value("4"),
-        self.volume.set_value("7"),
-        self.clarity.set_value("9")
+        self.structure.set_value("6")
+        self.relevance.set_value("3"),
+        self.volume.set_value("8"),
+        self.clarity.set_value("5")
 
 
