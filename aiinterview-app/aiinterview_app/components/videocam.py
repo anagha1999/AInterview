@@ -4,13 +4,13 @@ from pathlib import Path
 from urllib.request import urlopen
 from PIL import Image
 import reflex_webcam as webcam
-from vapi_python import Vapi
+# from vapi_python import Vapi
 from ..backend.backend import State
 
 # Your VAPI assistant credentials
 API_KEY = "2b69f505-2aac-410c-bd38-6b8da2baddf8"
 ASSISTANT_ID = "4d742d2d-2afe-484b-8eab-4fd5fa41e825"
-vapi = Vapi(api_key=API_KEY)
+# vapi = Vapi(api_key=API_KEY)
 
 # Identifies a particular webcam component in the DOM
 WEBCAM_REF = "webcam"
@@ -60,7 +60,7 @@ class CameraState(rx.State):
     def on_start_recording(self):
         self.recording = True
         print("Started recording")
-        vapi.start(assistant_id=ASSISTANT_ID)
+        # vapi.start(assistant_id=ASSISTANT_ID)
         with self._video_path().open("wb") as f:
             f.write(b"")
 
@@ -73,13 +73,15 @@ class CameraState(rx.State):
         return ";".join(parts)
 
     def handle_video_chunk(self, chunk: str):
-        print("Got video chunk", len(chunk))
+        # print("JD", State.get_jd())
+        # print("Campany", State.company)
+        # print("Got video chunk", len(chunk))
         with self._video_path().open("ab") as f:
             with urlopen(self._strip_codec_part(chunk)) as vid:
                 f.write(vid.read())
 
     def on_stop_recording(self):
-        vapi.stop()
+        # vapi.stop()
         print(f"Stopped recording: {self._video_path()}")
         self.recording = False
 
@@ -150,6 +152,7 @@ def webcam_upload_component(ref: str) -> rx.Component:
                 "Download Last Video", href=rx.get_upload_url(VIDEO_FILE_NAME), size="4"
             ),
         ),
+
         width="1000px",
         align="center",
     )
