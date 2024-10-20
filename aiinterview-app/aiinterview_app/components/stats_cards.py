@@ -10,17 +10,19 @@ class InputState(rx.State):
     resume: str
     company: str
     name: str
-
     def set_input(self, job_description: str, resume: str, company: str, name: str ):
         self.job_description = job_description
         self.resume = resume
         self.company = company
         self.name = name
 
-    def handle_submit(self):
+    def handle_submit(self, form_data: dict):
         # Process the submitted data
-        #self.set_input(form_data[job_description])
-        #print(f"Submitted value: {form_data}")
+        self.set_input(form_data['job_description'],
+                       form_data['resume'],
+                        form_data['company'], 
+                        form_data['name'])
+        print(f"Submitted value: {form_data}")
         return rx.redirect("/interview")
         
 
@@ -109,7 +111,8 @@ def stats_card(
 
 
 def stats_cards_group() -> rx.Component:
-    return rx.flex(
+    return rx.form(
+            rx.flex(
         rx.card(
             rx.vstack( 
                 rx.hstack(
@@ -226,11 +229,14 @@ def stats_cards_group() -> rx.Component:
             rx.button(
                 rx.text("Start Interview",type= "submit", size="4", display=["none", "none", "block"]),
                 size="3",
-                on_click=InputState.handle_submit,
             )),      
         spacing="6",
         width="100%",
         justify="center",
         wrap="wrap",
         # display=["none", "none", "flex"],
+        
+        ),
+        on_submit=InputState.handle_submit,
+
     )

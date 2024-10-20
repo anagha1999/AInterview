@@ -6,18 +6,18 @@ from PIL import Image
 import reflex_webcam as webcam
 from vapi_python import Vapi
 from .stats_cards import InputState
+import logging
 
 # Your VAPI assistant credentials
-API_KEY = "ef315768-0514-4089-8c7e-17e831657af6" #siva: "2b69f505-2aac-410c-bd38-6b8da2baddf8"
-ASSISTANT_ID = "cc4108b8-369e-4ece-8b69-58d09958da28" # siva: "4d742d2d-2afe-484b-8eab-4fd5fa41e825"
+API_KEY = "2b69f505-2aac-410c-bd38-6b8da2baddf8" #"ef315768-0514-4089-8c7e-17e831657af6" #siva: "2b69f505-2aac-410c-bd38-6b8da2baddf8"
+ASSISTANT_ID = "4d742d2d-2afe-484b-8eab-4fd5fa41e825" #"cc4108b8-369e-4ece-8b69-58d09958da28" # siva: "4d742d2d-2afe-484b-8eab-4fd5fa41e825"
 
 vapi = Vapi(api_key=API_KEY)
 
-name = "Jane" #InputState.name
-company ="Google" #InputState.company
+name = InputState.name
+company = InputState.company
 
-print(name)
-#print(InputState.name.__str__)
+print(name + " Hi")
 #company = "Amazon" #accept from user input. 
 assistantOverrides = { 
   "variableValues": {
