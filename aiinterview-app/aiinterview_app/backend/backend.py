@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 
 
 
+
 def _get_percentage_change(value: Union[int, float], prev_value: Union[int, float]) -> float:
     percentage_change = (
         round(((value - prev_value) / prev_value) * 100, 2)
@@ -35,6 +36,10 @@ class MonthValues(rx.Base):
     total_payments: float = 0.0
     num_delivers: int = 0
 
+class InterviewFile(rx.Model, table=True):
+    filename: str
+    data: bytes
+    created_at: datetime = datetime.now()
 
 
 class State(rx.State):
@@ -145,7 +150,7 @@ class State(rx.State):
             session.commit()
         self.load_entries()
         return rx.toast.info(f"User {self.current_user['name']} has been added.", position="bottom-right")
-    
+
 
     def update_customer_to_db(self, form_data: dict):
         self.current_user.update(form_data)
