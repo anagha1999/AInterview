@@ -4,8 +4,8 @@ from vapi_python import Vapi
 #app = Flask(__name__)
 
 # Your VAPI assistant credentials
-API_KEY = "ef315768-0514-4089-8c7e-17e831657af6"
-ASSISTANT_ID = "cc4108b8-369e-4ece-8b69-58d09958da28"
+API_KEY = "2b69f505-2aac-410c-bd38-6b8da2baddf8" #anagha: "ef315768-0514-4089-8c7e-17e831657af6"
+ASSISTANT_ID = "4d742d2d-2afe-484b-8eab-4fd5fa41e825" # anagha: cc4108b8-369e-4ece-8b69-58d09958da28"
 
 # Initialize the VAPI assistant
 #assistant = Assistant(api_key=API_KEY, assistant_id=ASSISTANT_ID)
