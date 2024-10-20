@@ -4,7 +4,7 @@ from pathlib import Path
 from urllib.request import urlopen
 from PIL import Image
 import reflex_webcam as webcam
-# from vapi_python import Vapi
+from vapi_python import Vapi
 from ..backend.backend import State
 
 # Your VAPI assistant credentials
@@ -17,8 +17,8 @@ vapi = Vapi(api_key=API_KEY)
 company = "Amazon" #accept from user input. 
 amazonAssistantOverrides = { 
   "variableValues": {
-    'name': "Alice",
-    'company': company}
+    'name': "Siva",
+    'company': "Google"}
 }
 
 
@@ -92,11 +92,12 @@ class CameraState(rx.State):
                 f.write(vid.read())
 
     def on_stop_recording(self):
-        # vapi.stop()
+        # vapi.setMuted(True)
+        vapi.stop()
         print(f"Stopped recording: {self._video_path()}")
         self.recording = False
 
-    # vapi.setMuted(true);
+    
 
     def start_recording(self, ref: str):
         """Start recording a video."""
