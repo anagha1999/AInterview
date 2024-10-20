@@ -127,15 +127,15 @@ def webcam_upload_component(ref: str) -> rx.Component:
             id=ref,
             on_click=webcam.upload_screenshot(
                 ref=ref,
-                handler=CameraState.handle_screenshot,  # type: ignore
+                handler=State.handle_screenshot,  # type: ignore
             ),
             audio=True,
         ),
         rx.cond(
-            ~CameraState.recording,
+            ~State.recording,
             rx.button(
                 "🟢 Start Recording",
-                on_click=CameraState.start_recording(ref),
+                on_click=State.start_recording(ref),
                 color_scheme="green",
                 size="4",
             ),
@@ -147,7 +147,7 @@ def webcam_upload_component(ref: str) -> rx.Component:
             ),
         ),
         rx.cond(
-            CameraState.video_exists,
+            State.video_exists,
             rx.link(
                 "Download Last Video", href=rx.get_upload_url(VIDEO_FILE_NAME), size="4"
             ),
