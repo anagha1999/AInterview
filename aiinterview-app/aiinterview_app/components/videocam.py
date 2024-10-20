@@ -5,7 +5,7 @@ from urllib.request import urlopen
 from PIL import Image
 import reflex_webcam as webcam
 from vapi_python import Vapi
-from .backend.backend import State
+from ..backend.backend import State
 
 # Your VAPI assistant credentials
 API_KEY = "2b69f505-2aac-410c-bd38-6b8da2baddf8"

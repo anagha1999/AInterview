@@ -1,6 +1,7 @@
 import reflex as rx
 from .components.stats_cards import stats_cards_group
 from .components.videocam import webcam_upload_component
+from .components.report import create_interview_scores_card
 from .views.navbar import navbar
 from .backend.backend import State
 
@@ -9,11 +10,6 @@ def index() -> rx.Component:
         navbar(),
         stats_cards_group(),
         rx.center(
-            # rx.button(
-            #     rx.text("  Save  ", size="4", display=["none", "none", "block"]),
-            #     size="3",
-            #     on_click=State.update__info()
-            # ),
             rx.button(
                 rx.text("Start Interview", size="4", display=["none", "none", "block"]),
                 size="3",
@@ -71,7 +67,8 @@ def interview() -> rx.Component:
                         "Finish",
                         color_scheme="red",
                         size="4",
-                        width="300px"
+                        width="300px",
+                        on_click=rx.redirect("/report"),
                         ),
                     position="absolute",
                     bottom="2rem",
@@ -94,6 +91,23 @@ def interview() -> rx.Component:
         )
     # )
 
+def report() ->rx.Component:
+    return rx.fragment(
+        rx.script(src="https://cdn.tailwindcss.com"),
+        rx.box(
+            create_interview_scores_card(),
+            background_color="#F3F4F6",
+            display="flex",
+            align_items="center",
+            justify_content="center",
+            min_height="100vh",
+        ),
+        rx.button(
+            "test",
+            size="3",
+            on_click=State.test_increament(),
+        ),
+    )
 
 app = rx.App(
     theme=rx.theme(
@@ -109,4 +123,8 @@ app.add_page(
 
 app.add_page(
     interview,
+)
+
+app.add_page(
+    report,
 )
